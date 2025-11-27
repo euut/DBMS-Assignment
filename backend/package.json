@@ -1,0 +1,27 @@
+{
+  "name": "dbms",
+  "version": "1.0.0",
+  "description": "dbms assignment",
+  "homepage": "https://github.com/euut/DBMS-Assignment#readme",
+  "bugs": {
+    "url": "https://github.com/euut/DBMS-Assignment/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euut/DBMS-Assignment.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.20.0",
+    "nodemon": "^3.1.11"
+  }
+}
