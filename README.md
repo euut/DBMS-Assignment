@@ -1,10 +1,9 @@
-## Setup (Backend)
+## Setup
 
 Clone the repo:
 
 ```bash
 git clone https://github.com/euut/DBMS-Assignment.git
-cd backend
 ```
 
 Install dependencies:
