@@ -1,25 +1,35 @@
-import express from "express"
-import dotenv from "dotenv"
-import connectDB from "./config/database.js"
+const express = require('express')
+const session = require('express-session')
+const { connectDB } = require('./config/db.js')
+const authRoutes = require('./routes/auth.js')
+const dashboardRoutes = require('./routes/dashboard.js')
 
 const app = express();
+
+app.set("view engine", "ejs");
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-dotenv.config({ path: './.env' });
+// Express session
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: false
+}));
 
-const startServer = async () => {
-    try {
-        await connectDB();
+// API Routes
+app.use('/', authRoutes);
+app.use('/dashboard', dashboardRoutes);
 
-        const PORT = process.env.PORT || 8000;
+app.get('/', (req, res) => {
+    res.redirect('/login');
+})
 
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-        
-    } catch (error) {
-        console.log("\n MongoDB connection failed.", error);
-    }
-}
+const PORT = 3000;
 
-startServer();
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+})

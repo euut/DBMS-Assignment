@@ -1,1 +1,0 @@
-export const DB_NAME = "22007827_db_user"
