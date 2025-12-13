@@ -9,10 +9,10 @@
 <body class="bg-light">
   <%- include('partials/navbar') %>
 
-  <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+  <div class="container" style="margin-top: 80px;">
 
     <!-- User Info -->
-    <div class="card mb-4 shadow-sm" style="width: 80%;">
+    <div class="card mb-4 shadow-sm">
       <div class="card-header bg-primary text-white">
         <h4>User Information</h4>
       </div>
@@ -30,6 +30,10 @@
           <div class="col-md-9"><%= locals.user.email %></div>
         </div>
         <div class="row mb-2">
+          <div class="col-md-3 fw-bold">Password:</div>
+          <div class="col-md-9"><%= locals.user.password %></div>
+        </div>
+        <div class="row mb-2">
           <div class="col-md-3 fw-bold">Birthdate:</div>
           <div class="col-md-9"><%= new Date(locals.user.birthdate).toLocaleDateString() %></div>
         </div>
@@ -41,11 +45,16 @@
     </div>
 
     <!-- Transactions Table -->
-    <div class="card shadow-sm" style="width: 80%;">
+    <div class="card shadow-sm mb-4">
       <div class="card-header bg-primary text-white">
         <h4>Your Transactions</h4>
       </div>
       <div class="card-body">
+        <form action="/dashboard/search" method="GET">
+          <div class="mb-3">
+            <input type="text" id="search" name="search" class="form-control" placeholder="Search">
+          </div>
+        </form>
         <% if (locals.transactions.length === 0) { %>
           <p>No transactions found.</p>
         <% } else { %>
@@ -62,16 +71,18 @@
                 </tr>
               </thead>
               <tbody>
-                <% locals.transactions.forEach(t => { %>
-                  <tr>
-                    <td><%= new Date(t.date).toLocaleDateString() %></td>
-                    <td><%= t.symbol %></td>
-                    <td><%= t.transaction_code %></td>
-                    <td><%= t.amount %></td>
-                    <td>$<%= parseFloat(t.price).toFixed(2) %></td>
-                    <td>$<%= parseFloat(t.total).toFixed(2) %></td>
-                  </tr>
-                <% }) %>
+                <% locals.transactions.forEach(transactionGroup => { %>
+                  <% transactionGroup.transactions.forEach(t => { %>
+                    <tr>
+                      <td><%= new Date(t.date).toLocaleDateString() %></td>
+                      <td><%= t.symbol %></td>
+                      <td><%= t.transaction_code %></td>
+                      <td><%= t.amount %></td>
+                      <td>$<%= parseFloat(t.price).toFixed(2) %></td>
+                      <td>$<%= parseFloat(t.total).toFixed(2) %></td>
+                    </tr>
+                  <% }); %>
+                <% }); %>
               </tbody>
             </table>
           </div>
