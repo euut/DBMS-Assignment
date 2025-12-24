@@ -1,8 +1,8 @@
 const express = require('express')
 const session = require('express-session')
-const { connectDB } = require('./config/db.js')
-const authRoutes = require('./routes/auth.js')
-const dashboardRoutes = require('./routes/dashboard.js')
+const { connectDB } = require('./config/db')
+const authRoutes = require('./routes/auth')
+const dashboardRoutes = require('./routes/dashboard')
 
 const app = express();
 
@@ -30,8 +30,7 @@ app.get('/', (req, res) => {
 
 const PORT = 3000;
 
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
-    });
-})
+app.listen(PORT, async () => {
+    await connectDB();
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
