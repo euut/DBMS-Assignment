@@ -6,6 +6,8 @@ const dashboardRoutes = require('./routes/dashboard.js')
 
 const app = express();
 
+app.set('query parser', 'extended');
+
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
