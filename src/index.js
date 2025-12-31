@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Express session
 app.use(session({
-    secret: process.env.SESSION_KEY,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));

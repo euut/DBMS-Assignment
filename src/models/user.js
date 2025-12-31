@@ -1,11 +1,6 @@
-const mongoose = require('mongoose');
+// NOTE: This schema is ignored because native mongodb driver is used instead of mongoose
 
-/*
-This schema uses mongoose but in my routes I used raw mongodb driver (raw queries)
-because mongoose, if I'm not mistaken, seems to block operators by default (also includes some validations)
-but maybe can use this when doing mitigations or add other schemas if needed, otherwise can just leave it lol
-it's already included in package.json so no need to install manually, just use "npm i"
-*/
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     username: {
