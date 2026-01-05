@@ -19,27 +19,27 @@
       <div class="card-body">
         <div class="row mb-2">
           <div class="col-md-3 fw-bold">Name:</div>
-          <div class="col-md-9"><%= locals.user.name %></div>
+          <div class="col-md-9"><%= user.name %></div>
         </div>
         <div class="row mb-2">
           <div class="col-md-3 fw-bold">Username:</div>
-          <div class="col-md-9"><%= locals.user.username %></div>
+          <div class="col-md-9"><%= user.username %></div>
         </div>
         <div class="row mb-2">
           <div class="col-md-3 fw-bold">Email:</div>
-          <div class="col-md-9"><%= locals.user.email %></div>
+          <div class="col-md-9"><%= user.email %></div>
         </div>
         <div class="row mb-2">
           <div class="col-md-3 fw-bold">Password:</div>
-          <div class="col-md-9"><%= locals.user.password %></div>
+          <div class="col-md-9"><%= user.password %></div>
         </div>
         <div class="row mb-2">
           <div class="col-md-3 fw-bold">Birthdate:</div>
-          <div class="col-md-9"><%= new Date(locals.user.birthdate).toLocaleDateString() %></div>
+          <div class="col-md-9"><%= new Date(user.birthdate).toLocaleDateString() %></div>
         </div>
         <div class="row mb-2">
           <div class="col-md-3 fw-bold">Address:</div>
-          <div class="col-md-9"><%= locals.user.address %></div>
+          <div class="col-md-9"><%= user.address %></div>
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@
             <input type="text" id="search" name="search" class="form-control" placeholder="Search">
           </div>
         </form>
-        <% if (locals.transactions.length === 0) { %>
+        <% if (transactions.length === 0) { %>
           <p>No transactions found.</p>
         <% } else { %>
           <div class="table-responsive">
@@ -71,7 +71,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% locals.transactions.forEach(transactionGroup => { %>
+                <% transactions.forEach(transactionGroup => { %>
                   <% transactionGroup.transactions.forEach(t => { %>
                     <tr>
                       <td><%= new Date(t.date).toLocaleDateString() %></td>

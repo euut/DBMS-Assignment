@@ -9,20 +9,12 @@
 <body class="bg-light">
   <!-- <%- include('./partials/navbar') %> -->
 
-  <% if (typeof error !== 'undefined' && error) { %>
-        <div class="alert alert-danger"><%= error %></div>
-    <% } %>
-
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
-      <h2 class="card-title text-center mb-3">
-        <%= locals.error ? "Login Failed" : "Login" %>
-      </h2>
+      <h2 class="card-title text-center mb-3">Login</h2>
 
-      <% if (locals.error) { %>
-        <div class="alert alert-danger" role="alert">
-          <%= locals.error %>
-        </div>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-danger"><%= error %></div>
       <% } %>
 
       <form action="/login" method="POST">
